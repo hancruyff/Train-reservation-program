@@ -29,27 +29,27 @@
 - 회원 탈퇴
 
 <details>
-  <summary>자세히</summary>
+<summary>자세히</summary>
   
-  <img src="https://github.com/user-attachments/assets/c94f6b4b-b321-467e-a67d-cd569675f1c1" width="500" height="294"/>
+<img src="https://github.com/user-attachments/assets/c94f6b4b-b321-467e-a67d-cd569675f1c1" width="500" height="294"/>
 
-  로그인 화면
+로그인 화면
 
-  <img src="https://github.com/user-attachments/assets/d02815d8-06de-4b4e-9995-4c1c11e78fa0" width="500" height="294"/>
+<img src="https://github.com/user-attachments/assets/d02815d8-06de-4b4e-9995-4c1c11e78fa0" width="500" height="294"/>
 
-  회원 가입 화면
+회원 가입 화면
   
-  <img src="https://github.com/user-attachments/assets/36aa490a-d413-401d-81bd-de3ae582a06d" width="500" height="294"/>
+<img src="https://github.com/user-attachments/assets/36aa490a-d413-401d-81bd-de3ae582a06d" width="500" height="294"/>
 
-  관리자 메뉴 화면
+관리자 메뉴 화면
 
-  <img src="https://github.com/user-attachments/assets/644f37ae-522b-4c91-befb-dcd8676f465e" width="500" height="294"/>
+<img src="https://github.com/user-attachments/assets/644f37ae-522b-4c91-befb-dcd8676f465e" width="500" height="294"/>
 
-  회원 메뉴 화면
+회원 메뉴 화면
 
-  <img src="https://github.com/user-attachments/assets/1279d04e-3c3e-4f4d-ad8b-6df6bce392fe" width="500" height="294"/>
+<img src="https://github.com/user-attachments/assets/1279d04e-3c3e-4f4d-ad8b-6df6bce392fe" width="500" height="294"/>
 
-  예매 화면
+예매 화면
   
 <details/>
 
