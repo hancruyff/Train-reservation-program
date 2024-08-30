@@ -1,4 +1,4 @@
-## 목차
+## 🗉목차
 [1. 개요](#1-개요)
 
 [2. 주요 기능](#2-주요-기능)
@@ -7,10 +7,11 @@
 
 [4. 보안](#4-보안)
 
-## 1. 개요
+## 1. 🚄개요
 기차예약 프로그램 개발
 
-## 2. 주요 기능
+<img src="https://img.shields.io/badge/-C%23-000000?logo=Csharp&style=flat&logo=Csharp&logoColor=white"/> <img src="https://img.shields.io/badge/dotnet-512BD4?style=for-the-badge&logo=dotnet&logoColor=white"> <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white">
+## 2. 🔧주요 기능
 로그인 기능
 
 회원 가입 기능
@@ -29,11 +30,11 @@
 - 회원 탈퇴
 
 <details>
-<summary>자세히</summary>
+<summary>기능 자세히</summary>
   
 <img src="https://github.com/user-attachments/assets/c94f6b4b-b321-467e-a67d-cd569675f1c1" width="500" height="294"/>
 
-로그인 화면
+🖥로그인 화면
 
 <img src="https://github.com/user-attachments/assets/d02815d8-06de-4b4e-9995-4c1c11e78fa0" width="500" height="294"/>
 
@@ -52,7 +53,7 @@
 예매 화면
 </details>
 
-## 3. 데이터 베이스 설계
+## 3. ⌨️데이터 베이스 설계
 <img src="https://github.com/user-attachments/assets/542b55de-bce4-4db8-86ee-982550ebbc07" width="300" height="119"/>
 
 총 5개의 테이블로 구성
@@ -66,6 +67,6 @@ Foreign Key:
 
 데이터 무결성을 보장
 
-## 4. 보안
+## 4. 🔒보안
 
 SHA-256 방식을 이용하여 회원의 개인정보를 관리
