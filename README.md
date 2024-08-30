@@ -27,9 +27,6 @@
 - 예약 관리
 - 시간표 조회
 - 회원 탈퇴
-
-<details>
-<summary>자세히</summary>
   
 <img src="https://github.com/user-attachments/assets/c94f6b4b-b321-467e-a67d-cd569675f1c1" width="500" height="294"/>
 
@@ -50,9 +47,6 @@
 <img src="https://github.com/user-attachments/assets/1279d04e-3c3e-4f4d-ad8b-6df6bce392fe" width="500" height="294"/>
 
 예매 화면
-  
-<details/>
-
 
 
 ## 3. 데이터 베이스 설계
