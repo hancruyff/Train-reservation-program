@@ -53,7 +53,7 @@
 예매 화면
 </details>
 
-## 3. ⌨️데이터 베이스 설계
+## 3. ⌨데이터 베이스 설계
 <img src="https://github.com/user-attachments/assets/542b55de-bce4-4db8-86ee-982550ebbc07" width="300" height="119"/>
 
 총 5개의 테이블로 구성
