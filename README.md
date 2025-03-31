@@ -70,105 +70,73 @@ using (SQLiteConnection connection = new SQLiteConnection(connectionString))
 }
 ```
 
-### 4-1-1. 데이터 조회(SELECT)
-```C#
-string query = "SELECT * FROM Trains WHERE DepartureStation = @departure AND ArrivalStation = @arrival";
-using (SQLiteCommand command = new SQLiteCommand(query, connection))
-{
-    command.Parameters.AddWithValue("@departure", departureStation);
-    command.Parameters.AddWithValue("@arrival", arrivalStation);
-    using (SQLiteDataReader reader = command.ExecuteReader())
-    {
-        while (reader.Read())
-        {
-            // 조회된 데이터 처리
-        }
-    }
-}
-```
-### 4-1-2. 데이터 삽입(INSERT)
-
-```C#
-string insertQuery = "INSERT INTO Reservations (MemberID, TrainID, SeatID, TravelDate, PaymentStatus) VALUES (@memberID, @trainID, @seatID, @travelDate, @paymentStatus)";
-using (SQLiteCommand command = new SQLiteCommand(insertQuery, connection))
-{
-    command.Parameters.AddWithValue("@memberID", memberId);
-    command.Parameters.AddWithValue("@trainID", trainId);
-    command.Parameters.AddWithValue("@seatID", seatId);
-    command.Parameters.AddWithValue("@travelDate", travelDate);
-    command.Parameters.AddWithValue("@paymentStatus", paymentStatus);
-    command.ExecuteNonQuery();
-}
-```
-### 4-1-3. 데이터 수정(UPDATE)
-
-```C#
-string updateQuery = "UPDATE Seats SET IsReserved = 1, ReservedBy = @memberID WHERE SeatID = @seatID";
-using (SQLiteCommand command = new SQLiteCommand(updateQuery, connection))
-{
-    command.Parameters.AddWithValue("@memberID", memberId);
-    command.Parameters.AddWithValue("@seatID", seatId);
-    command.ExecuteNonQuery();
-}
-```
-### 4-1-4. 데이터 삭제(DELETE)
-```C#
-string deleteQuery = "DELETE FROM Reservations WHERE ReservationID = @reservationID";
-using (SQLiteCommand command = new SQLiteCommand(deleteQuery, connection))
-{
-    command.Parameters.AddWithValue("@reservationID", reservationId);
-    command.ExecuteNonQuery();
-}
-```
-
-### 🧾 4-1-5. 주요 테이블 SQL 예시
+### 🧾 4-2. 주요 테이블 SQL 예시
 
 ```sql
-CREATE TABLE Members (
-    MemberID INTEGER PRIMARY KEY,
-    Username TEXT NOT NULL UNIQUE,
-    PasswordHash TEXT NOT NULL,
-    Name TEXT,
-    Role TEXT
+CREATE TABLE 열차 (
+    열차ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    열차이름 TEXT NOT NULL,
+    출발지 TEXT,
+    도착지 TEXT
 );
 
-CREATE TABLE Trains (
-    TrainID INTEGER PRIMARY KEY,
-    TrainName TEXT,
-    DepartureStation TEXT,
-    ArrivalStation TEXT
+CREATE TABLE 운행시간표 (
+    시간표ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    열차ID INTEGER,
+    날짜 TEXT,
+    시간 TEXT,
+    FOREIGN KEY (열차ID) REFERENCES 열차(열차ID)
 );
 
-CREATE TABLE Schedule (
-    ScheduleID INTEGER PRIMARY KEY,
-    TrainID INTEGER,
-    DepartureTime TEXT,
-    ArrivalTime TEXT,
-    FOREIGN KEY (TrainID) REFERENCES Trains(TrainID)
+CREATE TABLE 좌석 (
+    좌석ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    시간표ID INTEGER,
+    좌석번호 TEXT,
+    예약됨 INTEGER DEFAULT 0,
+    FOREIGN KEY (시간표ID) REFERENCES 운행시간표(시간표ID)
 );
 
-CREATE TABLE Seats (
-    SeatID INTEGER PRIMARY KEY,
-    TrainID INTEGER,
-    IsReserved INTEGER DEFAULT 0,
-    ReservedBy INTEGER,
-    FOREIGN KEY (TrainID) REFERENCES Trains(TrainID),
-    FOREIGN KEY (ReservedBy) REFERENCES Members(MemberID)
-);
-
-CREATE TABLE Reservations (
-    ReservationID INTEGER PRIMARY KEY,
-    MemberID INTEGER,
-    TrainID INTEGER,
-    SeatID INTEGER,
-    TravelDate TEXT,
-    PaymentStatus TEXT,
-    FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
-    FOREIGN KEY (TrainID) REFERENCES Trains(TrainID),
-    FOREIGN KEY (SeatID) REFERENCES Seats(SeatID)
+CREATE TABLE 예매정보 (
+    예매ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    이름 TEXT,
+    연락처 TEXT,
+    열차ID INTEGER,
+    시간표ID INTEGER,
+    좌석ID INTEGER,
+    예매일시 DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (열차ID) REFERENCES 열차(열차ID),
+    FOREIGN KEY (시간표ID) REFERENCES 운행시간표(시간표ID),
+    FOREIGN KEY (좌석ID) REFERENCES 좌석(좌석ID)
 );
 ```
 ---
+
+### 4-3 데이터 흐름 & ERD
+## 🔗 테이블 관계 (1:N 관계)
+
+- `열차`  
+  ↳ `운행시간표`  
+  ↳ `좌석`  
+   ↳ `예매정보`
+
+각 테이블은 다음과 같은 방식으로 외래키(FK)로 연결됩니다:
+
+| 부모 테이블 | 자식 테이블   | 관계 유형 |
+|-------------|---------------|-----------|
+| 열차        | 운행시간표     | 1 : N     |
+| 운행시간표  | 좌석           | 1 : N     |
+| 좌석        | 예매정보       | 1 : 1 또는 1 : N |
+
+### ▶️ 예매 흐름
+
+사용자가 열차를 선택
+
+→ 해당 운행시간표를 선택
+
+→ 좌석을 선택
+
+→ 예매정보에 모든 선택 정보를 통합하여 저장
+
 
 ## 5. 🖼 실행 화면
 <img src="https://github.com/user-attachments/assets/c94f6b4b-b321-467e-a67d-cd569675f1c1" width="500" height="294"/>
